@@ -8,10 +8,29 @@ Description: This project does stuff
 
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 using namespace std;
 
 static int COL_WIDTH = 10;
+
+bool isPrime(int num, int primes[], int i) {
+	// return true if num is prime
+	// return false if num is composite
+	for(int j = 0; j < i; j++) {
+		// loop through all prime numbers found till now
+		if (num/primes[j] < 2)
+			// there are no divisible primes greater than half of the current
+			// number
+			return true;
+		if (num%primes[j] == 0){
+			// if current number fully divides into a prime, number is 
+			// composite
+			return false;
+		}
+	}
+	return true;
+}
 
 int main(int argc, char* argv[])
 {
@@ -48,37 +67,27 @@ int main(int argc, char* argv[])
 		currentNumber++;
 	}
 	
+	// loop until x number of primes has been found
 	for (int i = 1; i < x; i++) {
 		if (i%y == 0){
+		// new line when column has been reached
 			fout << endl;
 		}
-		bool foundPrime = false;
-		while(!isPrime(currentNumber, primes[], i))
+		
+		while(!isPrime(currentNumber, primes, i))
 			// loop while incrementing until you find prime number
 			currentNumber++;
-		// 
+		
+		// store prime into array primes[] 
 		primes[i] = currentNumber;
+		// print out primes
 		fout << setw(COL_WIDTH) << currentNumber << ' ';
+		// increment for next prime search
+		currentNumber++;
 	} 
 }
 
-bool isPrime(int num, int primes[], int i) {
-	// return true if num is prime
-	// return false if num is composite
-	for(int j = 0; j < i; j++) {
-		// loop through all prime numbers found till now
-		if (currentNumber/primes[j] < 2)
-			// there are no divisible primes greater than half of the current
-			// number
-			return true;
-		if (currentNumber%primes[j] == 0){
-			// if current number fully divides into a prime, number is 
-			// composite
-			return false;
-		}
-	}
-	return true;
-}
+
 	
 
 
