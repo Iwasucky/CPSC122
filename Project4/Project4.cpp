@@ -8,27 +8,77 @@ Description: This project does stuff
 
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 using namespace std;
+
+static int COL_WIDTH = 10;
 
 int main(int argc, char* argv[])
 {
+	if (argc != 2){
+		// if number of input arguments is not 2
+		cout << "Incorrect number of command line arguments" << endl;
+		exit(EXIT_FAILURE);
+	}
+	
 	ofstream fout;			// declare output file
 	fout.open(argv[1]);		// match out file as first argument in call
 	
-	int x, y;
+	int x, y;			
+	// ask for number of prime numbers and store into x
 	cout << "How many Prime Numeros, Señor? ";
-	cin >> x;
+	cin >> x;			
+	// ask for number of columns to print into and store into y
+	cout << "How many columns would you like it to be printed in, Señor? ";
+	cin >> y;			
 	
-	cout << '\n' << "How many columns would you like it to be printed in, Señor? ";
-	cin >> y;
+	// in case of negative numbers for inputs
+	if (x < 0 || y < 1) {
+		cout << "Error: Invalid input parameters" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	int primes[x] = {};		// declare array to store prime numbers into
 	
-/*	int[] primes = int[x];
+	int currentNumber = 2; 	// first prime is 2
+	if (x > 0) {
+		// edge case for first prime, since there are nothing in array primes[]
+		primes[0] = currentNumber;
+		fout << setw(COL_WIDTH) << currentNumber << ' ';
+		currentNumber++;
+	}
 	
-	int currentnumber = 2;
-	for (int i = 0; i < x; i++){
-		while (currentnumber%
+	for (int i = 1; i < x; i++) {
+		if (i%y == 0){
+			fout << endl;
+		}
+		bool foundPrime = false;
+		while(!isPrime(currentNumber, primes[], i))
+			// loop while incrementing until you find prime number
+			currentNumber++;
+		// 
+		primes[i] = currentNumber;
+		fout << setw(COL_WIDTH) << currentNumber << ' ';
 	} 
-	
-	fout << "hi" << '\n';
-*/		
 }
+
+bool isPrime(int num, int primes[], int i) {
+	// return true if num is prime
+	// return false if num is composite
+	for(int j = 0; j < i; j++) {
+		// loop through all prime numbers found till now
+		if (currentNumber/primes[j] < 2)
+			// there are no divisible primes greater than half of the current
+			// number
+			return true;
+		if (currentNumber%primes[j] == 0){
+			// if current number fully divides into a prime, number is 
+			// composite
+			return false;
+		}
+	}
+	return true;
+}
+	
+
+
