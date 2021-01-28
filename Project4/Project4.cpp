@@ -12,25 +12,7 @@ Description: This project does stuff
 #include <cstdlib>
 using namespace std;
 
-static int COL_WIDTH = 10;
-
-bool isPrime(int num, int primes[], int i) {
-	// return true if num is prime
-	// return false if num is composite
-	for(int j = 0; j < i; j++) {
-		// loop through all prime numbers found till now
-		if (num/primes[j] < 2)
-			// there are no divisible primes greater than half of the current
-			// number
-			return true;
-		if (num%primes[j] == 0){
-			// if current number fully divides into a prime, number is 
-			// composite
-			return false;
-		}
-	}
-	return true;
-}
+static int COL_WIDTH = 6;
 
 int main(int argc, char* argv[])
 {
@@ -87,7 +69,20 @@ int main(int argc, char* argv[])
 	} 
 }
 
-
-	
-
-
+bool isPrime(int num, int primes[], int i) {
+	// return true if num is prime
+	// return false if num is composite
+	for(int j = 0; j < i; j++) {
+		// loop through all prime numbers found till now
+		if (num/primes[j] < 2)
+			// there are no divisible primes greater than half of the current
+			// number
+			return true;
+		if (num%primes[j] == 0){
+			// if current number fully divides into a prime, number is 
+			// composite
+			return false;
+		}
+	}
+	return true;
+}
