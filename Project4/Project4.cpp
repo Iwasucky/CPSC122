@@ -1,9 +1,11 @@
 /*
 Name: Kai Iwasaki
 Class: CPSC 122
-Date Submitted: January 27, 2021
+Date Submitted: January 28, 2021
 Assignment: Project 4
-Description: This project does stuff
+Description: This program takes a file name in the funtion call to print a
+			 specified number (x) of prime numbers to in a specified amount 
+			 (y) of columns.
 */
 
 #include <fstream>
@@ -12,7 +14,7 @@ Description: This project does stuff
 #include <cstdlib>
 using namespace std;
 
-static int COL_WIDTH = 6;
+static int COL_WIDTH = 6;		// set width of columns for fout
 
 bool isPrime(int num, int primes[], int i) {
 	// return true if num is prime
@@ -20,8 +22,8 @@ bool isPrime(int num, int primes[], int i) {
 	for(int j = 0; j < i; j++) {
 		// loop through all prime numbers found till now
 		if (num/primes[j] < 2)
-			// there are no divisible primes greater than half of the current
-			// number
+			// there are no numbers that fully divide when divisor is 
+			// greater than half of dividend
 			return true;
 		if (num%primes[j] == 0){
 			// if current number fully divides into a prime, number is 
@@ -29,7 +31,7 @@ bool isPrime(int num, int primes[], int i) {
 			return false;
 		}
 	}
-	return true;
+	return true;		// return true if nothing fully divided
 }
 
 
@@ -80,9 +82,8 @@ int main(int argc, char* argv[])
 			// loop while incrementing until you find prime number
 			currentNumber++;
 		
-		// store prime into array primes[] 
+		// store prime into array primes[] and print it to file 
 		primes[i] = currentNumber;
-		// print out primes
 		fout << setw(COL_WIDTH) << currentNumber << ' ';
 		// increment for next prime search
 		currentNumber++;
