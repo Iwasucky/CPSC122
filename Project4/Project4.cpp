@@ -14,7 +14,7 @@ Description: This program takes a file name in the funtion call to print a
 #include <cstdlib>
 using namespace std;
 
-static int COL_WIDTH = 6;		// set width of columns for fout
+static int COL_WIDTH = 7;		// set width of columns for fout
 
 bool isPrime(int num, int primes[], int i) {
 	// return true if num is prime
