@@ -16,9 +16,15 @@ using namespace std;
 
 static int COL_WIDTH = 7;		// set width of columns for fout
 
-bool isPrime(int num, int primes[], int i) {
-	// return true if num is prime
-	// return false if num is composite
+/*
+Description: This function find out if the given number is prime
+Input: 		num: 		the number in question
+			primes[]: 	the list of prime numbers found up till now
+			i: 			which nth prime we are looking for
+Returns:	true if num is prime, false if not
+*/
+bool isPrime(int num, int primes[], int i) 
+{
 	for(int j = 0; j < i; j++) {
 		// loop through all prime numbers found till now
 		if (num/primes[j] < 2)
@@ -38,8 +44,8 @@ bool isPrime(int num, int primes[], int i) {
 //////////////////////////// main /////////////////////////////////
 int main(int argc, char* argv[])
 {
+	// if number of input arguments is not 2
 	if (argc != 2){
-		// if number of input arguments is not 2
 		cout << "Incorrect number of command line arguments" << endl;
 		exit(EXIT_FAILURE);
 	}
@@ -74,7 +80,7 @@ int main(int argc, char* argv[])
 	// loop until x number of primes has been found
 	for (int i = 1; i < x; i++) {
 		if (i%y == 0){
-		// new line when column has been reached
+		// new line when number of columns has been reached
 			fout << endl;
 		}
 		
